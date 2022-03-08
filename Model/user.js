@@ -10,13 +10,10 @@ const userSchema = new Schema({
     LastName: {
     type: Schema.Types.String,
     },
-    Address: {
+    Email: {
     type: Schema.Types.String,
     },
-    Number: {
-    type: Schema.Types.Number,
-    },
-    Email: {
+    Password: {
     type: Schema.Types.String,
     }
 },
