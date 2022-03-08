@@ -1,7 +1,7 @@
 
 
-## MERN with signup template
-# A simple CRUD template
+## SubScription App
+# A simple CRUD Application
 
 In the project directory, you can run:
 
@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000] for th client side
+Open [http://localhost:3000] for the client side
 (http://localhost:8000) for the server side
 
 To connect to the database - MongoDB
