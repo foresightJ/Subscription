@@ -12,7 +12,7 @@ import './signup.css';
     this.state = {
       firstName: '',
       lastName: '',
-      address: '',
+      password: '',
       number: '',
       email: '',
     };
@@ -32,23 +32,13 @@ import './signup.css';
     const newUser = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      address: this.state.address,
-      number: this.state.number,
+      password: this.state.password,
       email: this.state.email,
       }
     services.create(newUser)
     .then(res => {
       console.log(res)
       this.props.history.push(`/`)
-       // this.setState({
-      //   // id: response.newUser.id,
-      //   firstName: response.newUser.firstName,
-      //   lastName: response.newUser.lastName,
-      //   address: response.newUser.address,
-      //   number: response.newUser.number,
-      //   email: response.newUser.email,
-      // });
-      // console.log(response.newUser);
 
     })
     .catch(e => {
@@ -61,9 +51,8 @@ import './signup.css';
           id: null,
           firstName: '',
           lastName: '',
-          address: '',
-          number: '',
           email: '',
+          password: '',
         
       });
     }
@@ -76,7 +65,7 @@ import './signup.css';
             <div className="sign-up">
               <div className="card" style= {{width: "30rem"}} >
                 <div className="card-header">
-                  <h5 className="card-firstName"> I WANT a cook</h5>
+                  <h5 className="card-firstName"> SIGN UP</h5>
                   <hr></hr>
                 </div>
                 <div className="card-body">
@@ -101,24 +90,6 @@ import './signup.css';
                         </div>
                       </div>
 
-                      {/* Address */}
-                      <div className="form-group row">
-                        <label  className="col-sm-3 col-form-label">Address</label>
-                        <div className="col-sm-9
-                        ">
-                        <textarea name="address" className="form-control" id="inputAddress" rows="3" value={this.state.address} onChange={this.onChange}></textarea>
-                        </div>
-                      </div>
-
-                      {/* Number */}
-                      <div className="form-group row">
-                        <label  className="col-sm-3 col-form-label">Phone No.</label>
-                        <div className="col-sm-9
-                        ">
-                          <input name="number" className="form-control" id="inputNumber" value={this.state.number} onChange={this.onChange}/>
-                        </div>
-                      </div>
-
                       {/* Email */}
                       <div className="form-group row">
                         <label  className="col-sm-3 col-form-label">Email</label>
@@ -128,10 +99,21 @@ import './signup.css';
                         </div>
                       </div>
                       
+
+                      {/* Password */}
+                      <div className="form-group row">
+                        <label  className="col-sm-3 col-form-label">Password.</label>
+                        <div className="col-sm-9
+                        ">
+                          <input name="password" type="password" className="form-control" id="inputPassword" value={this.state.password} onChange={this.onChange}/>
+                        </div>
+                      </div>
+
+                      
                     </div>
 
                     <div className="getCook">  
-                      <button type="submit" className="btn">Let's get my Cook</button>
+                      <button type="submit" className="btn">Sing Me up</button>
                     </div>
                   </form>
 

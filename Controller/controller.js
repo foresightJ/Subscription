@@ -10,14 +10,16 @@ const User = require('../Model/user')
 const postCreateUser = async (req, res, next) => {
     //get the info from the front-end and send to the db
     //CREATE USER
+    // console.log(req.body)
     const newUser = new User ({
         // id: req.body.id,
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
-        Address: req.body.address,
-        Number: req.body.number,
         Email: req.body.email,
+        Password: req.body.password,
+        
     })
+    console.log(newUser)
     // //SAVE USER IN THE DB
     newUser.save()
     .then(result => {
