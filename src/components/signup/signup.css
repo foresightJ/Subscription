@@ -1,0 +1,49 @@
+
+.sign-up{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+.guest .sign-up .card{
+    border: 4px solid #D0D2D3;
+}
+.guest .sign-up .card-body{
+    display: block; 
+}
+
+.guest .sign-up .faster-easier-sign-up{
+    margin-top: 15px; 
+}
+.guest .getCook{
+    text-align: center
+}
+.guest .getCook .btn{
+    text-align: center;
+    border: 2px solid rgb(149, 149, 149);
+    background-image: linear-gradient( 180deg, rgba(241, 241, 239, 0.85) 11.2%, rgba(245, 242, 237, 0.6) 56.2%, rgba(235, 230, 230, 0.8) 100.2%);
+    text-align: center;
+    margin-left: 0;
+    padding: 5px;
+    border-radius: 7px
+    
+}
+.guest .sign-up .faster-easier-sign-up p{
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: -2px;
+}
+.guest .sign-up .faster-easier-sign-up .social-icon{
+    justify-content: center;
+    margin-top:0px;
+    text-align: center;
+    font-size: xx-large;
+    
+}
+.guest .sign-up .faster-easier-sign-up .social-icon .fa{
+    margin-right: 20px;
+}
+.guest .sign-up .faster-easier-sign-up .social-icon .fa-google{
+    text-align: center;
+    font-size: 2.3rem;  
+}
+
