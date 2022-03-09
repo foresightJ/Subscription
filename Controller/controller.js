@@ -8,7 +8,6 @@ const User = require('../Model/user')
 
 //Creating A User
 const postCreateUser = async (req, res, next) => {
-    //get the info from the front-end and send to the db
     //CREATE USER
     // console.log(req.body)
     const newUser = new User ({
@@ -19,7 +18,6 @@ const postCreateUser = async (req, res, next) => {
         Password: req.body.password,
         
     })
-    console.log(newUser)
     // //SAVE USER IN THE DB
     newUser.save()
     .then(result => {
@@ -68,8 +66,6 @@ const postEdit = (req, res, next) => {
     .then(user => {
         user.FirstName = req.body.firstName;
         user.LastName = req.body.lastName;
-        user.Address = req.body.address;
-        user.Number = req.body.number;
         user.Email = req.body.email;
         return user.save()
     })
