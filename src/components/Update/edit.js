@@ -17,7 +17,7 @@ import NavBar from '../Nav/navbar';
             firstName: '',
             lastName: '',
             address: '',
-            number: '',
+            password: '',
             email: '',
     };
 
@@ -37,7 +37,7 @@ import NavBar from '../Nav/navbar';
         firstName: user.data.data.FirstName,
         lastName: user.data.data.LastName,
         address: user.data.data.Address,
-        number: user.data.data.Number,
+        password: user.data.data.password,
         email: user.data.data.Email,
       })
     })
@@ -58,8 +58,6 @@ import NavBar from '../Nav/navbar';
       id: this.state.id,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      address: this.state.address,
-      number: this.state.number,
       email: this.state.email,
     }
     services.postEdit(id, updatedUser)
@@ -105,23 +103,8 @@ import NavBar from '../Nav/navbar';
                       </div>
                     </div>
 
-                    {/* Address */}
-                    <div className="form-group row">
-                      <label  className="col-sm-3 col-form-label">Address</label>
-                      <div className="col-sm-9
-                      ">
-                      <textarea name="address" className="form-control" id="inputAddress" rows="3" value={this.state.address} onChange={this.onChange}></textarea>
-                      </div>
-                    </div>
 
-                    {/* Number */}
-                    <div className="form-group row">
-                      <label  className="col-sm-3 col-form-label">Phone No.</label>
-                      <div className="col-sm-9
-                      ">
-                        <input name="number" className="form-control" id="inputNumber" value={this.state.number} onChange={this.onChange}/>
-                      </div>
-                    </div>
+                    
 
                     {/* Email */}
                     <div className="form-group row">

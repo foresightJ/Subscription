@@ -15,8 +15,16 @@ const userSchema = new Schema({
     },
     Password: {
     type: Schema.Types.String,
+    },
+    subscripitons: [
+    {
+      sub: {
+        type: Schema.Types.ObjectId,
+        ref: 'Subscription',
+      }
     }
-},
+  ]
+  },
    
 {
   timestamps: true
