@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import jwt_decode from "jwt-decode";
-import services from '../../components/util/services'
-import NavBar from '../Nav/navbar';
+import services from '../../../components/util/services'
+import NavBar from '../../../components/Nav/navbar';
 
 
 
@@ -76,7 +76,7 @@ import NavBar from '../Nav/navbar';
                         <label for="password" class="col-sm-3 col-form-label">Password</label>
                         <div class="col-sm-9
                         ">
-                          <input name="password"  class="form-control" id="inputpassword" value={this.state.password} onChange={this.onChange}/>
+                          <input name="password"  type="password" class="form-control" id="inputpassword" value={this.state.password} onChange={this.onChange}/>
                         </div>
                       </div>
                       

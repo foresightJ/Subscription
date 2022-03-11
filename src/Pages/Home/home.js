@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../Nav/navbar';
-import List from '../ListOfUsers/displayUsers'
+import NavBar from '../../components/Nav/navbar';
+import List from '../../components/ListOfUsers/displayUsers'
 
 const home = () => {
     return (

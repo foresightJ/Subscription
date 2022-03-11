@@ -19,14 +19,18 @@ const subscriptionsSchema = new Schema({
         type: String,
         require: true
     },
-    nextPayment: {
-        type: Object,
+    paymentDate: {
+        type: Date,
         require: true
     },
-    previousPayment: [{
-        type: Object, 
-        required: true
+    history: [{
+        type: Object,
     }], 
+    user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
 },
 {
     timestamps: true

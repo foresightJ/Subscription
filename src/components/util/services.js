@@ -36,8 +36,29 @@ class StuffDataService {
     return http.post(`/api/user/login`, data);
   }
  
+// SUBSCRIPTIONS
 
+  // create subscription
+  createSub(data) {
+    return http.post(`/api/addSub`, data);
+  }
+   // get all subscriptions
+  findAllSubs() {
+    return http.get("/api/subscriptions");
+  }
+  // this retrieves a single subscription
+  findSubsById(id) {
+    return http.get(`/api/subscription/${id}`);
+  }
 
+ // update a particular subscription
+  updateSubs(id, data) {
+    return http.post(`/edit/subscription/${id}`, data);
+  }
+  //delete a subscription
+  removeSub(id) {
+    return http.post(`/api/removeSub/${id}`);
+  }
 }
 
 export default new StuffDataService();

@@ -20,7 +20,27 @@ router.get('/edit/:id', Controller.getEdit);
 router.post('/edit/:id', Controller.postEdit);
 
 //post delete
-router.post('/api/:id', Controller.postDelete);
+router.post('/api/:id', Controller.postDeleteUser);
+
+
+
+// SUBSCRIPTION Routes
+
+//create new subscrition
+router.post('/api/addSub', Controller.postCreateSub);
+
+// get all the subscriptions
+router.get('/api/subscriptions', Controller.getAllSubscriptions)
+
+//getting a subscription by id
+router.get('/api/subscription/:id', Controller.getSubscriptionByID);
+
+//post edited subscription
+router.post('/edit/subscription/:id', Controller.postEditSubscriptions);
+
+//delete a subscription
+router.post('/api/removeSub/:id', Controller.postDeleteSubscription
+);
 
 
 

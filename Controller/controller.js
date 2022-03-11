@@ -1,5 +1,6 @@
 //this is the server controller where i do send data to the back end....
 const User = require('../Model/user')
+const Subscription = require('../Model/subscription')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -61,6 +62,10 @@ const getHompage = async(req, res, next) => {
 const getAUserByID = (req, res, next) => {
     const id = req.params.id;
     User.findById(id)
+    .populate({
+        path: 'subscriptions.sub',
+    })
+    .exec()
     .then(data => {
         res.send({data})
     })
@@ -97,16 +102,126 @@ const postEdit = (req, res, next) => {
 }
 
 //DELETING A USER
-const postDelete = async (req, res, next) => {
-    const id = req.params.id;
-    console.log(id)
-    await User.findByIdAndDelete(id)
-    .then(result => {
-        console.log(result)
-          res.status(200).json(result)
-      })
-    .catch(err => res.status(400).json(err))
+const postDeleteUser = async (req, res, next) => {
+    try{ 
+    const userId = req.params.id;
+    console.log(userId)
+    // // find the user //
+    const user = await User.findById(userId)
+    user.deleteOne()
+
+    //find all subscriptions with userId
+        const SubDel= await Subscription.deleteMany({
+            'user': userId
+        })
+        console.log(SubDel)
+    res.status(200).json()
+    }catch(err) {
+        console.log(err)
+        res.status(400).json(err);
+      }
+
 }
+
+
+// SUBSCRIPTIONS
+
+// creating a subscrition
+const postCreateSub = async (req, res) => {
+    try{
+    const userId = req.body.userId
+    console.log("post", req.body)
+    const newSub = new Subscription ({
+        user : userId,
+        name: req.body.name,
+        cost: req.body.cost,
+        company: req.body.company,
+        description: req.body.description,
+        paymentDate: req.body.paymentDate,
+    })
+        const resp =  await newSub.save()
+        const subId = {sub: resp._id}
+        const user = await  User.findById(userId)
+      // push the id into the user post array
+        user.subscripitons.push(subId)
+        const result = await   user.save()
+        res.status(200).json(result)
+    }catch(err){res.status(400).json(err)}
+}
+
+//RETRIVE ALL Subscriptions
+const getAllSubscriptions = async(req, res, next) => {
+    try{
+      const subs =  await Subscription.find()
+      .populate('user')
+      .exec() 
+      res.send({subs});
+    }catch(err){res.status(400).json(err)}
+}
+
+//RETRIVE A Subscription BY ID
+const getSubscriptionByID = async (req, res, next) => {
+    try{ 
+        const subId = req.params.id;
+        const sub = await Subscription.findById(subId)
+        const user = await User.findById(sub.user)
+        .populate({
+            path: 'subscription.sub'
+        })
+        .exec()
+    res.send({user, sub})
+   
+    }catch(err){res.status(400).json(err)}
+}
+
+const postEditSubscriptions = async (req, res, next) => {
+    try{
+
+        const id = req.params.id;
+        console.log(id)
+        const sub = await Subscription.findById(id)  
+        sub.name = req.body.name;
+        sub.cost =  req.body.cost;
+        sub.company =  req.body.company;
+        sub.description =  req.body.description;
+        sub.paymentDate =  req.body.paymentDate;
+        
+        const result = await sub.save()
+        res.status(200).json(result)
+
+    }catch(err){res.status(400).json(err)}
+}
+
+//DELETING A Subscription
+const postDeleteSubscription = async (req, res, next) => {
+    try{
+    const subId = req.params.id;
+    let userId = ''
+
+    const sub =  await Subscription.findById(subId)
+
+    userId = sub.user._id
+    
+
+    // delete subscription from user's account
+    const user = await User.findById(userId)
+    const allSubscriptions = user.subscriptions
+
+    console.log(allSubscriptions)
+    for(let i=0; i < allSubscriptions.length; i++){
+        console.log(allSubscriptions[i])
+        if(allSubscriptions[i].sub._id.toString() === subId.toString()){
+        //    remove the subscription in user acct
+            allSubscriptions.splice(i, 1)
+            user.save()
+            // delete the subscription
+            sub.remove()
+            res.status(200)
+        }
+    }
+    }catch(err){res.status(400).json(err)}
+}
+
 
 module.exports = {
     postCreateUser,
@@ -114,6 +229,14 @@ module.exports = {
     getAUserByID,
     getEdit,
     postEdit, 
-    postDelete,
+    postDeleteUser,
     getLogIn,
+
+    // subscriptions
+    postCreateSub,
+    getSubscriptionByID,
+    getAllSubscriptions,
+    postEditSubscriptions,
+    postDeleteSubscription
+
 }
