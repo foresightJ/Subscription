@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import services from '../util/services'
+import jwt_decode from "jwt-decode";
 import NavBar from '../Nav/navbar';
 import './signup.css';
 
@@ -38,7 +39,12 @@ import './signup.css';
     services.create(newUser)
     .then(res => {
       console.log(res)
-      this.props.history.push(`/`)
+        let token = res.data
+        localStorage.setItem('token', token);  
+        const userDoc = jwt_decode(token); 
+        console.log(userDoc.user)
+        this.props.setUserInState(userDoc.user)
+        this.props.history.push(`/`)
 
     })
     .catch(e => {
@@ -112,7 +118,7 @@ import './signup.css';
                       
                     </div>
 
-                    <div className="getCook">  
+                    <div className="getSubmit">  
                       <button type="submit" className="btn">Sing Me up</button>
                     </div>
                   </form>
@@ -125,8 +131,3 @@ import './signup.css';
         </React.Fragment>
     )}
 }
-
-
-
-
-
