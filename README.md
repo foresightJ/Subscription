@@ -1,7 +1,7 @@
 
 
 # SubScription App
-  *A simple CRUD Application to keep track of all your endless Subs/bills*
+  *A simple CRUD Application to keep track of all your endless Subs/bills.*
   *You add all your re-occurrent subscriptions and keep track of the next and previous payment*
 
 ## Technologies Used
