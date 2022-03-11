@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 
 
-import services from '../util/services'
-import NavBar from '../Nav/navbar';
+import services from '../../../components/util/services'
+import NavBar from '../../../components/Nav/navbar';
 
 
 

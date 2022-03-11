@@ -15,6 +15,8 @@ import Login from './components/LogIn/login';
 import FindById from './components/findbyId/findbyId';
 import Edit from './components/Update/edit'
 
+import AddSubscription from './components/Subscriptions/AddSub'
+
 
 class App extends Component {
   state = {
@@ -33,9 +35,8 @@ class App extends Component {
       this.setState({user: userDoc.user})      
     }
   }
-  
-
-render() {
+  render() {
+    console.log('user:', this.state.user)
   return (
     <React.Fragment>
       <Router>
@@ -48,7 +49,12 @@ render() {
             <Login {...props} setUserInState={this.setUserInState}/>
           )}/> 
           <Route path="/findbyid/" component={FindById} />       
-          <Route path="/edit/" component={Edit} />       
+          <Route path="/edit/" component={Edit} /> 
+
+          <Route path="/addSubscription" render={(props) => (
+            <AddSubscription {...props} loggedInUserId={this.state.user}/>
+          )}/>
+
         </Switch>
       </Router>
     </React.Fragment>

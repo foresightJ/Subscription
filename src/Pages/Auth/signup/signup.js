@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import services from '../util/services'
+import services from '../../../components/util/services'
 import jwt_decode from "jwt-decode";
-import NavBar from '../Nav/navbar';
+import NavBar from '../../../components/Nav/navbar';
 import './signup.css';
 
 

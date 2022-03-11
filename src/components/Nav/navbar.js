@@ -15,7 +15,7 @@ const navbar = () => {
             <header className="header">
                 <Navbar  expand="lg" >
                     <Navbar.Brand href="/">
-                        TEST
+                        MY Subscriptions
                     </Navbar.Brand>
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
