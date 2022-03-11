@@ -15,6 +15,7 @@ export default function MyAccount (props) {
     // }
 
     useEffect( () => {
+        console.log(data)
         setUser(data) 
 
     },[data])

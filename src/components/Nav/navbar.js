@@ -39,7 +39,7 @@ const Navigationbar = (props) => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto m-auto nav-bar">
                         <Nav.Link href="/my-account">My Account</Nav.Link>
-                        <Nav.Link href="/addSubscription">Add Subscription</Nav.Link>
+                        <Nav.Link href="/addSubscription">Manage Subscription</Nav.Link>
                         {user && <Navbar.Text onClick={logOut}>Logout</Navbar.Text>}
                         {/* <Nav.Link href="/signin">SignUp</Nav.Link>
                         <Nav.Link href="/login">Login</Nav.Link> */}

@@ -52,7 +52,7 @@ class App extends Component {
               <Home {...props} loggedInUserId={this.state.user} />
             )}/>
             <Route path="/my-account" exact render={(props) => (
-              <MyAccount {...props} loggedInUserId={this.state.user} setUserInState={this.setUserInState}/>
+              <MyAccount {...props} loggedInUserId={this.state.user[0]} setUserInState={this.setUserInState}/>
             )}/>
             {/* <Route path="/edit" exact render={(props) => (
               <Edit {...props} loggedInUserId={this.state.user[0]} />
