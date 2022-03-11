@@ -147,7 +147,7 @@ const postCreateSub = async (req, res) => {
         const subId = {sub: resp._id}
         const user = await  User.findById(userId)
       // push the id into the user post array
-        user.subscripitons.push(subId)
+        user.subscriptions.push(subId)
         const result = await   user.save()
         res.status(200).json(result)
     }catch(err){res.status(400).json(err)}
@@ -180,7 +180,8 @@ const getSubscriptionByID = async (req, res, next) => {
 
 const postEditSubscriptions = async (req, res, next) => {
     try{
-
+        console.log(req.params)
+        console.log(req.body)
         const id = req.params.id;
         console.log(id)
         const sub = await Subscription.findById(id)  
@@ -199,12 +200,14 @@ const postEditSubscriptions = async (req, res, next) => {
 //DELETING A Subscription
 const postDeleteSubscription = async (req, res, next) => {
     try{
-    const subId = req.params.id;
+        const subId = req.params.id;
+        // console.log('subId', subId)
     let userId = ''
 
     const sub =  await Subscription.findById(subId)
+    // console.log("sub",sub)
 
-    userId = sub.user._id
+    userId = sub.user
     
 
     // delete subscription from user's account

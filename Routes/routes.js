@@ -30,7 +30,7 @@ router.post('/api/:id', Controller.postDeleteUser);
 router.post('/api/createSub/:id', Controller.postCreateSub);
 
 // get all the subscriptions
-router.get('/api/subscriptions', Controller.getAllSubscriptions)
+router.get('/api/subscriptions/:id', Controller.getAllSubscriptions)
 
 //getting a subscription by id
 router.get('/api/subscription/:id', Controller.getSubscriptionByID);

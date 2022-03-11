@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import services from '../../components/util/services';
-import NavBar from '../../components/Nav/navbar';
 import {Link } from 'react-router-dom';
-import {Card, Col, Row, Button} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 // import Delete from '../Delete/removeOne'
 
 
@@ -77,37 +76,5 @@ export default function MyAccount (props) {
         </>
     
     )
-
-
-        // return (
-        //     <React.Fragment>
-        //     {/* //     <section className="sign-up">
-        //     //         <div className="card mb-3" style={{maxWidth: "540px"}}>
-        //     //             <div className="row no-gutters">
-        //     //                 <div className="col-md-4">
-        //     //                 <img src="" className="card-img" alt="img"/>
-        //     //                 </div>
-        //     //                 <div className="col-md-12">
-        //     //                     <div className="card-body">
-        //     //                         <h5 className="card-title">{user.FirstName} {user.LastName}</h5>
-        //     //                         <p className="card-text">{user.Address}</p>
-        //     //                         <p className="card-text">{user.Number}</p>
-        //     //                         <p className="card-text"><small className="text-muted">{user.Email}</small></p>
-        //     //                     </div>
-        //     //                 </div>
-        //     //             </div>
-        //     //         <div> */}
-        //     //             <Link to={{
-        //     //                 pathname: `/edit/${user._id}` ,
-        //     //                 search: `?user=${user.firstName`,
-        //     //                 state: `${user._id}`
-        //     //                 }}
-        //     //                 className="btn btn-danger col-md-5">Edit Me</Link>
-        //     //                 <button className="btn btn-danger col-md-5" type="submit" onClick={deleteUser}>Delete</button>
-        //     //             </div>
-        //     //         </div>
-        //     //     </section>
-        //     </React.Fragment>
-        // )
     
 }

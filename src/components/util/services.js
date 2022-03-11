@@ -43,8 +43,8 @@ class StuffDataService {
     return http.post(`/api/createSub/${id}`, data);
   }
    // get all subscriptions
-  findAllSubs() {
-    return http.get("/api/subscriptions");
+  findAllSubs(id) {
+    return http.get(`/api/subscriptions/${id}`);
   }
   // this retrieves a single subscription
   findSubsById(id) {
