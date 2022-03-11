@@ -5,9 +5,9 @@
   *You add all your re-occurrent subscriptions and keep track of the next and previous payment*
 
 ## Technologies Used
-**React**
-**Express**
-**Bootstrap**
+**React,**
+**Express,**
+**Bootstrap,**
 **MongoDB**
 
 
