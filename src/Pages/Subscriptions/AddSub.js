@@ -53,7 +53,7 @@ export default function AddSub (props) {
             <div className="sign-up">
               <div className="card" style= {{width: "30rem"}} >
                 <div className="card-header">
-                  <h5 className="card-name"> SIGN UP</h5>
+                  <h5 className="card-name"> ADD A SUBSCRIPTION</h5>
                   <hr></hr>
                 </div>
                 <div className="card-body">

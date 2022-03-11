@@ -45,34 +45,34 @@ export default function MyAccount (props) {
     return( 
         <>
                     {user && 
-            <Card>
-                <Card.Header>
-                    <div style={{display: "flex", justifyContent: "space-between"}}>
-                        <p>My Info</p>
-                        <p>Welcome {user.firstName}</p>
-                    </div>
-                </Card.Header>
-                <Card.Body>
-                    <>
-                    <Card.Title>Special title treatment</Card.Title>
-                    <Card.Text>
-                    </Card.Text>
-                    <div style={{display: "flex", justifyContent: "space-between"}}>
-                    <Link to={{
-                        pathname: `/edit/${user._id}` ,
-                        search: `?user=${user.firstName}${user.lastName}`,
-                        state: `${user._id}`,
-                        }}
-                        className="btn btn-warning ">
-                            Edit My Info
-                    </Link>
-                    <button className="btn btn-danger" type="submit" onClick={() => deleteUser(user._id)}>Delete My Account</button>
-                    </div>
-                    </>
-                    
-                    
-                </Card.Body>
-            </Card>
+                        <Card>
+                            <Card.Header>
+                                <div style={{display: "flex", justifyContent: "space-between"}}>
+                                    <p>My Info</p>
+                                    <p>Welcome {user.firstName}</p>
+                                </div>
+                            </Card.Header>
+                            <Card.Body>
+                                <>
+                                <Card.Title>Special title treatment</Card.Title>
+                                <Card.Text>
+                                </Card.Text>
+                                <div style={{display: "flex", justifyContent: "space-between"}}>
+                                <Link to={{
+                                    pathname: `/edit/${user._id}` ,
+                                    search: `?user=${user.firstName}${user.lastName}`,
+                                    state: `${user._id}`,
+                                    }}
+                                    className="btn btn-warning ">
+                                        Edit My Info
+                                </Link>
+                                <button className="btn btn-danger" type="submit" onClick={() => deleteUser(user._id)}>Delete My Account</button>
+                                </div>
+                                </>
+                                
+                                
+                            </Card.Body>
+                        </Card>
                     }
         </>
     
