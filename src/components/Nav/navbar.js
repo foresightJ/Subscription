@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,6 +9,7 @@ import './navbar.css';
 
 
 const Navigationbar = (props) => {
+    const history = useHistory();
     const loggedUser = props.loggedInUserId
     const [user, setUser] = useState(null)
 
@@ -20,6 +22,7 @@ const Navigationbar = (props) => {
        console.log('log out')
        localStorage.removeItem("token")
         props.setUserInState(null)
+        history.push('/')
    }
 
     return (
@@ -36,6 +39,7 @@ const Navigationbar = (props) => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto m-auto nav-bar">
                         <Nav.Link href="/my-account">My Account</Nav.Link>
+                        <Nav.Link href="/addSubscription">Add Subscription</Nav.Link>
                         {user && <Navbar.Text onClick={logOut}>Logout</Navbar.Text>}
                         {/* <Nav.Link href="/signin">SignUp</Nav.Link>
                         <Nav.Link href="/login">Login</Nav.Link> */}

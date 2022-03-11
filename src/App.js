@@ -12,8 +12,9 @@ import jwt_decode from "jwt-decode";
 import Home from './Pages/Home/home';
 import Signup from './Pages/Auth/signup';
 import Login from './Pages/Auth/login';
-import FindById from './Pages/Admin//findbyId/findbyId';
-import Edit from './Pages/Admin/Update/edit'
+import MyAccount from './Pages/Admin/MyAccount';
+// import Edit from './Pages/Admin/edit'
+import Edit from './Pages/Admin/edit'
 import NavBar from './components/Nav/navbar';
 
 import AddSubscription from './Pages/Subscriptions/AddSub'
@@ -39,42 +40,41 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.state.user)
   return (
     <React.Fragment>
          {this.state.user && <NavBar loggedInUserId={this.state.user} setUserInState={this.setUserInState}/>}
       <Router>
     
-        {this.state.user ? <Switch>
-          <Route path="/" exact render={(props) => (
-            <Home {...props} loggedInUserId={this.state.user} />
-          )}/>
-          {/* <Route path="/my-account" exact render={(props) => (
-            <FindById {...props} loggedInUserId={this.state.user} />
-          )}/>
-          <Route path="/edit/" exact render={(props) => (
-            <Home {...props} loggedInUserId={this.state.user} />
-          )}/> */}
-          {/* <Route path="/my-account" component={FindById} />        */}
-          {/* <Route path="/edit/" component={Edit} loggedInUserId={this.state.user} />  */}
+        {this.state.user ? 
+          <Switch>
+            <Route path="/" exact render={(props) => (
+              <Home {...props} loggedInUserId={this.state.user} />
+            )}/>
+            <Route path="/my-account" exact render={(props) => (
+              <MyAccount {...props} loggedInUserId={this.state.user} setUserInState={this.setUserInState}/>
+            )}/>
+            {/* <Route path="/edit" exact render={(props) => (
+              <Edit {...props} loggedInUserId={this.state.user[0]} />
+            )}/> */}
+            {/* <Route path="/my-account" component={FindById} />        */}
+            <Route path="/edit/" component={Edit} loggedInUserId={this.state.user[0]} /> 
 
-          <Route path="/addSubscription" render={(props) => (
-            <AddSubscription {...props} loggedInUserId={this.state.user}/>
-          )}/>
+            <Route path="/addSubscription" render={(props) => (
+              <AddSubscription {...props} loggedInUserId={this.state.user}/>
+            )}/>
 
-    </Switch>: <Switch>
-    <Route path="/create-an-account" render={(props) => (
-    <Signup {...props} setUserInState={this.setUserInState}/>
-  )}/>
+          </Switch>
+        :
+          <Switch>
+            <Route path="/create-an-account" render={(props) => (
+              <Signup {...props} setUserInState={this.setUserInState}/>
+            )}/>
 
-<Route path="/" exact render={(props) => (
-    <Home {...props} loggedInUserId={this.state.user} />
-  )}/>
-   
-
- 
-
-</Switch>}
+            <Route path="/" exact render={(props) => (
+                <Home {...props} loggedInUserId={this.state.user} />
+            )}/>
+          </Switch>
+}
         
       </Router>
     </React.Fragment>
