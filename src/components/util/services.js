@@ -31,6 +31,10 @@ class StuffDataService {
     return http.post(`/api/${id}`);
   }
 
+  //login
+  postLogin(data) {
+    return http.post(`/api/user/login`, data);
+  }
  
 
 

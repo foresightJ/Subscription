@@ -7,6 +7,9 @@ router.get('/', Controller.getHompage)
 //post new user
 router.post('/api', Controller.postCreateUser);
 
+// POST /api/users/login
+router.post('/api/user/login', Controller.getLogIn);
+
 //getting a user item by id
 router.get('/api/:id', Controller.getAUserByID);
 

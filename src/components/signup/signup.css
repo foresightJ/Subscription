@@ -14,10 +14,10 @@
 .guest .sign-up .faster-easier-sign-up{
     margin-top: 15px; 
 }
-.guest .getCook{
+.guest .getSubmit{
     text-align: center
 }
-.guest .getCook .btn{
+.guest .getSubmit .btn{
     text-align: center;
     border: 2px solid rgb(149, 149, 149);
     background-image: linear-gradient( 180deg, rgba(241, 241, 239, 0.85) 11.2%, rgba(245, 242, 237, 0.6) 56.2%, rgba(235, 230, 230, 0.8) 100.2%);

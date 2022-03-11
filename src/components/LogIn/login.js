@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import jwt_decode from "jwt-decode";
+import services from '../../components/util/services'
 import NavBar from '../Nav/navbar';
 
 
@@ -7,8 +9,9 @@ import NavBar from '../Nav/navbar';
   constructor(props) {
     super(props);
     this.state = {
-      number: '',
+      password: '',
       email: '',
+      error: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -16,11 +19,31 @@ import NavBar from '../Nav/navbar';
   }
 
   onChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({[e.target.name]: e.target.value, error: ''})
   }
 
   onSubmit(e) {
-    
+    e.preventDefault();
+    const newUser = {
+      email: this.state.email,
+      password: this.state.password,
+      }
+      services.postLogin(newUser)
+      .then(res => {
+        let token = res.data
+        localStorage.setItem('token', token);  
+        const userDoc = jwt_decode(token); 
+        this.props.setUserInState(userDoc.user)
+        this.props.history.push(`/`)
+     })
+     .then(resp => {
+       //REDIRECT TO THE /findbyid/${el.id} PAGE
+      // this.props.history.goBack()
+      this.props.history.push('/')
+     } )
+    .catch(e => {
+      console.log(e);
+    });
   }
 
    render() { 
@@ -38,14 +61,6 @@ import NavBar from '../Nav/navbar';
                   <form noValidate onSubmit={this.onSubmit}>
                     <div className="form">
 
-                      {/* Number */}
-                      <div class="form-group row">
-                        <label for="number" class="col-sm-3 col-form-label">Phone No.</label>
-                        <div class="col-sm-9
-                        ">
-                          <input name="number"  class="form-control" id="inputNumber" value={this.state.number} onChange={this.onChange}/>
-                        </div>
-                      </div>
 
                       {/* Email */}
                       <div class="form-group row">
@@ -53,6 +68,15 @@ import NavBar from '../Nav/navbar';
                         <div class="col-sm-9
                         ">
                           <input name="email" type="email" class="form-control" id="inputEmail3" value={this.state.email} onChange={this.onChange}/>
+                        </div>
+                      </div>
+
+                      {/* password */}
+                      <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9
+                        ">
+                          <input name="password"  class="form-control" id="inputpassword" value={this.state.password} onChange={this.onChange}/>
                         </div>
                       </div>
                       
