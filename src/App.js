@@ -18,7 +18,8 @@ import Edit from './Pages/Admin/edit'
 import NavBar from './components/Nav/navbar';
 
 import AddSubscription from './Pages/Subscriptions/AddSub'
-
+import Subscription from './Pages/Subscriptions/SingleSub'
+import EditSubScription from './Pages/Subscriptions/EditSubs'
 
 class App extends Component {
   state = {
@@ -61,6 +62,14 @@ class App extends Component {
 
             <Route path="/addSubscription" render={(props) => (
               <AddSubscription {...props} loggedInUserId={this.state.user}/>
+            )}/>
+
+            <Route path="/subscription" render={(props) => (
+              <Subscription {...props} loggedInUserId={this.state.user}/>
+            )}/>
+
+            <Route path="/edit-subscription" render={(props) => (
+              <EditSubScription {...props} loggedInUserId={this.state.user}/>
             )}/>
 
           </Switch>

@@ -16,7 +16,7 @@ const userSchema = new Schema({
     password: {
     type: Schema.Types.String,
     },
-    subscripitons: [
+    subscriptions: [
     {
       sub: {
         type: Schema.Types.ObjectId,

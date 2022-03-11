@@ -1,72 +1,88 @@
-import React, { Component } from 'react';
-import services from '../../../components/util/services';
-import NavBar from '../../../components/Nav/navbar';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from "react-router-dom";
+import services from '../../components/util/services';
 import {Link } from 'react-router-dom';
+import {Card} from 'react-bootstrap'
+
 // import Delete from '../Delete/removeOne'
 
 
-export default class findbyId extends Component {
+export default function SingleSub (props) {
 
-    state = {
-        data: []
-    }
-
- 
-    //RETRIEVING A PARTICULAR USER
-    componentDidMount() {
-        const id =  this.props.location.state
-        console.log(id)
-       services.findById(id)
-        .then(user => {
-            this.setState({
-                data: user.data.data
-            })
-        })
-        .catch(err => console.log(err));
-    }
+    const history = useHistory();
+    const subId = history.location.state
+    const [data, setData] = useState()
     
-    //DELETE A USER
-    deleteUser = async() => {
-        const id = this.props.location.state;
-       await services.remove(id)
+
+    useEffect(()=>{
+        //all Subscriptions
+        (async()=>{
+            try {
+                const result = await services.findSubsById(subId)
+                console.log("allSubs", result.data.sub)
+                setData(result.data.sub)
+            } catch (error) {
+               console.log(error) 
+            }
+        })()
+
+    },[subId])
+    
+
+    const dataStamp = (dt) => {
+        const d = new Date( dt );
+        // console.log(d.)
+        const stamp =  `${d.getDay()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+        return stamp;
+
+    }
+
+    
+    //DELETE A Subscription
+    const deletedata = async(id) => {
+       await services.removeSub(id)
        .then(result => {
-            this.props.history.push('/')
+        history.push('/')
         })
         .catch(err=> console.log(err))
     }
-
-
-    render() {
-        let user = this.state.data;
-        return (
-            <React.Fragment>
-                <section className="sign-up">
-                    <div className="card mb-3" style={{maxWidth: "540px"}}>
-                        <div className="row no-gutters">
-                            <div className="col-md-4">
-                            <img src="" className="card-img" alt="img"/>
-                            </div>
-                            <div className="col-md-12">
-                                <div className="card-body">
-                                    <h5 className="card-title">{user.FirstName} {user.LastName}</h5>
-                                    <p className="card-text">{user.Address}</p>
-                                    <p className="card-text">{user.Number}</p>
-                                    <p className="card-text"><small className="text-muted">{user.Email}</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                        <Link to={{
-                            pathname: `/edit/${user._id}` ,
-                            search: `?user=${user.FirstName}${user.LastName}`,
-                            state: `${user._id}`,
-                            }}
-                            className="btn btn-danger col-md-5">Edit Me</Link>
-                            <button className="btn btn-danger col-md-5" type="submit" onClick={this.deleteUser}>Delete</button>
-                        </div>
+    return( 
+        <>
+                    {data && 
+            <Card>
+                <Card.Header>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <p>Company: {data.company}</p>
+                        <p>Amount: ${data.cost}</p>
                     </div>
-                </section>
-            </React.Fragment>
-        )
-    }
+                </Card.Header>
+                <Card.Body>
+                    <>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                            <Card.Title>{data.name}</Card.Title>
+                            <Card.Title> Recent Payment: {dataStamp(data.paymentDate)}</Card.Title>
+
+                        </div>
+                    <Card.Text>{data.description}</Card.Text>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                    <Link to={{
+                        pathname: `/edit-subscription/${data._id}` ,
+                        search: `?data=${data.name}`,
+                        state: `${data._id}`,
+                        }}
+                        className="btn btn-warning ">
+                            Edit My Info
+                    </Link>
+                    <button className="btn btn-danger" type="submit" onClick={() => deletedata(data._id)}>Delete My Account</button>
+                    </div>
+                    </>
+                    
+                    
+                </Card.Body>
+            </Card>
+                    }
+        </>
+    
+    )
+    
 }
