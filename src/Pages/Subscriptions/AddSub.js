@@ -17,18 +17,19 @@ export default function AddSub (props) {
 
   useEffect(() => {
    setUser(loggedUser)
+    console.log(loggedUser)
+    // loggedUser && loggedUser[0]
   }, [loggedUser])
-
+  
   // const redirect = () => history.push('/login')
+  
 
 
   const onSubmit = async (e) => {
     try{
-console.log(loggedUser)
-    
       e.preventDefault()
     const newSub = {
-      userId : loggedUser[0]._id,
+      userId : user._id,
       name: name,
       cost: cost,
       company: company,
@@ -36,7 +37,7 @@ console.log(loggedUser)
       paymentDate: paymentDate,
     }
     console.log(newSub)
-    const res = await services.createSub(newSub)
+    const res = await services.createSub(user._id,newSub)
       console.log(res)
       history.push(`/`)
     }catch(e) {
@@ -46,7 +47,6 @@ console.log(loggedUser)
 
   return (
     <>
-     <NavBar/>
      {user && <> 
      
       <section className="guest">

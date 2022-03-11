@@ -35,11 +35,15 @@ const postCreateUser = async (req, res, next) => {
 const getLogIn = async (req, res) => {
     try {
       const user = await User.find({ email: req.body.email });
+      console.log(user)
           // check password. if it's bad throw an error.
-          if (!( bcrypt.compare(req.body.password, user.password))) throw new Error();
+          if (!( bcrypt.compare(req.body.password, user.password))) {
+              throw new Error()
+        }else;{
       // if we got to this line, password is ok. give user a new token.
       const token = jwt.sign({ user }, process.env.SECRET,{ expiresIn: '24h' });
       res.json(token)
+    }
     } catch {
       res.status(400).json('Bad Credentials');
     }
@@ -129,8 +133,8 @@ const postDeleteUser = async (req, res, next) => {
 // creating a subscrition
 const postCreateSub = async (req, res) => {
     try{
+        console.log("post", req.body)
     const userId = req.body.userId
-    console.log("post", req.body)
     const newSub = new Subscription ({
         user : userId,
         name: req.body.name,

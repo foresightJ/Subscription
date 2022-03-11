@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import services from '../../../components/util/services'
+import services from './../../components/util/services'
 import jwt_decode from "jwt-decode";
-import NavBar from '../../../components/Nav/navbar';
 import './signup.css';
 
 
@@ -66,7 +65,6 @@ import './signup.css';
    render() { 
      return (
         <React.Fragment>
-          <NavBar/>
           <section className="guest">
             <div className="sign-up">
               <div className="card" style= {{width: "30rem"}} >
@@ -122,7 +120,11 @@ import './signup.css';
                       <button type="submit" className="btn">Sing Me up</button>
                     </div>
                   </form>
-
+                  <div className="faster-easier-sign-up">
+                    <p>Already have an account? <a href='/'>Login Here</a></p>
+                      <div className="social-icon d-flex container">
+                      </div>
+                  </div>
                 </div>
                 
               </div>

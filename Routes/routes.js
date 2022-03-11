@@ -27,7 +27,7 @@ router.post('/api/:id', Controller.postDeleteUser);
 // SUBSCRIPTION Routes
 
 //create new subscrition
-router.post('/api/addSub', Controller.postCreateSub);
+router.post('/api/createSub/:id', Controller.postCreateSub);
 
 // get all the subscriptions
 router.get('/api/subscriptions', Controller.getAllSubscriptions)

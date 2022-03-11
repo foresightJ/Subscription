@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,7 +8,23 @@ import './navbar.css';
 
 
 
-const navbar = () => {
+const Navigationbar = (props) => {
+    const history = useHistory();
+    const loggedUser = props.loggedInUserId
+    const [user, setUser] = useState(null)
+
+    
+  useEffect(() => {
+    setUser(loggedUser)
+   }, [loggedUser]) 
+
+   const logOut = () => {
+       console.log('log out')
+       localStorage.removeItem("token")
+        props.setUserInState(null)
+        history.push('/')
+   }
+
     return (
         <React.Fragment>
 
@@ -21,9 +38,11 @@ const navbar = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto m-auto nav-bar">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/signin">SignUp</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/my-account">My Account</Nav.Link>
+                        <Nav.Link href="/addSubscription">Add Subscription</Nav.Link>
+                        {user && <Navbar.Text onClick={logOut}>Logout</Navbar.Text>}
+                        {/* <Nav.Link href="/signin">SignUp</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>   
@@ -33,4 +52,4 @@ const navbar = () => {
     );
 }
 
-export default navbar;
+export default Navigationbar;

@@ -39,8 +39,8 @@ class StuffDataService {
 // SUBSCRIPTIONS
 
   // create subscription
-  createSub(data) {
-    return http.post(`/api/addSub`, data);
+  createSub(id, data) {
+    return http.post(`/api/createSub/${id}`, data);
   }
    // get all subscriptions
   findAllSubs() {
