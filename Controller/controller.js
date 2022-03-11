@@ -10,20 +10,19 @@ const SALT_ROUNDS = 6;
 const postCreateUser = async (req, res, next) => {
     try{
         //CREATE USER
-        
+        const hashedPassword = await bcrypt.hash(req.body.password, SALT_ROUNDS)
         const newUser = new User ({
             // id: req.body.id,
-            FirstName: req.body.firstName,
-            LastName: req.body.lastName,
-            Email: req.body.email,
-            Password: req.body.password,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: hashedPassword,
             
         })
         // //SAVE USER IN THE DB
         const user = await newUser.save()
-        console.log(user)
         const token = jwt.sign({ user }, process.env.SECRET,{ expiresIn: '24h' });
-        console.log(token)
+      
         // send a response to the front end
         res.status(200).json(token)
     
@@ -34,10 +33,9 @@ const postCreateUser = async (req, res, next) => {
 // Login a User
 const getLogIn = async (req, res) => {
     try {
-      const user = await User.findOne({ email: req.body.email });
+      const user = await User.find({ email: req.body.email });
           // check password. if it's bad throw an error.
-          if (!(await bcrypt.compare(req.body.password, user.password))) throw new Error();
-  
+          if (!( bcrypt.compare(req.body.password, user.password))) throw new Error();
       // if we got to this line, password is ok. give user a new token.
       const token = jwt.sign({ user }, process.env.SECRET,{ expiresIn: '24h' });
       res.json(token)
@@ -86,9 +84,9 @@ const postEdit = (req, res, next) => {
     const id = req.body.id;
     User.findById(id)
     .then(user => {
-        user.FirstName = req.body.firstName;
-        user.LastName = req.body.lastName;
-        user.Email = req.body.email;
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;
+        user.email = req.body.email;
         return user.save()
     })
     .then((user) => {

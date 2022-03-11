@@ -4,16 +4,16 @@ const {Schema} = mongoose
 
 const userSchema = new Schema({
     
-    FirstName: {
+    firstName: {
     type: Schema.Types.String,
     },
-    LastName: {
+    lastName: {
     type: Schema.Types.String,
     },
-    Email: {
+    email: {
     type: Schema.Types.String,
     },
-    Password: {
+    password: {
     type: Schema.Types.String,
     },
     subscripitons: [
