@@ -39,7 +39,6 @@ export default class findbyId extends Component {
         let user = this.state.data;
         return (
             <React.Fragment>
-                <NavBar/>
                 <section className="sign-up">
                     <div className="card mb-3" style={{maxWidth: "540px"}}>
                         <div className="row no-gutters">

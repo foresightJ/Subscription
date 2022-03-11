@@ -1,19 +1,22 @@
-import React from 'react';
-import NavBar from '../../components/Nav/navbar';
-import List from '../../components/ListOfUsers/displayUsers'
+import React,{useState, useEffect} from 'react';
+import Subscriptions from '../Subscriptions/AllSubs'
+import Login from '../Auth/login';
 
-const home = () => {
+const Home = (props) => {
+    const loggedUser = props.loggedInUserId
+    
+    const [user, setUser] = useState(null)
+
+    
+  useEffect(() => {
+    setUser(loggedUser)
+   }, [loggedUser]) 
+
     return (
         <React.Fragment>
-            <NavBar/>
-        <div>
-            <h2>All Users</h2>
-            <List/>
-            <hr/>
-           
-        </div>
+            {!user ? <Login/> : <Subscriptions/>}
         </React.Fragment>
     );
 }
 
-export default home;
+export default Home;

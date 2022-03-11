@@ -73,12 +73,11 @@ import NavBar from '../../../components/Nav/navbar';
 
     return (
       <React.Fragment>
-        <NavBar/>
         <section className="guest">
           <div className="sign-up">
             <div className="card" style= {{width: "30rem"}} >
               <div className="card-header">
-                <h5 className="card-firstName"> I WANT a cook</h5>
+                <h5 className="card-firstName">Update My Info</h5>
                 <hr></hr>
               </div>
               <div className="card-body">

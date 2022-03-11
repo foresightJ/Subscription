@@ -9,13 +9,14 @@ import {
 } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
-import Home from './components/Home/home';
-import Signup from './components/signup/signup';
-import Login from './components/LogIn/login';
-import FindById from './components/findbyId/findbyId';
-import Edit from './components/Update/edit'
+import Home from './Pages/Home/home';
+import Signup from './Pages/Auth/signup';
+import Login from './Pages/Auth/login';
+import FindById from './Pages/Admin//findbyId/findbyId';
+import Edit from './Pages/Admin/Update/edit'
+import NavBar from './components/Nav/navbar';
 
-import AddSubscription from './components/Subscriptions/AddSub'
+import AddSubscription from './Pages/Subscriptions/AddSub'
 
 
 class App extends Component {
@@ -31,31 +32,50 @@ class App extends Component {
     let token = localStorage.getItem('token')
     if (token) {
       // YOU DO: check expiry!
+      console.log(jwt_decode(token))
       const userDoc = jwt_decode(token);  // decode jwt token
+      console.log(userDoc)
       this.setState({user: userDoc.user})      
     }
   }
   render() {
-    console.log('user:', this.state.user)
+    console.log(this.state.user)
   return (
     <React.Fragment>
+         {this.state.user && <NavBar loggedInUserId={this.state.user} setUserInState={this.setUserInState}/>}
       <Router>
-        <Switch>
-          <Route path="/"  exact component={Home} />  
-          <Route path="/signin" render={(props) => (
-            <Signup {...props} setUserInState={this.setUserInState}/>
+    
+        {this.state.user ? <Switch>
+          <Route path="/" exact render={(props) => (
+            <Home {...props} loggedInUserId={this.state.user} />
           )}/>
-        <Route path="/login" render={(props) => (
-            <Login {...props} setUserInState={this.setUserInState}/>
-          )}/> 
-          <Route path="/findbyid/" component={FindById} />       
-          <Route path="/edit/" component={Edit} /> 
+          {/* <Route path="/my-account" exact render={(props) => (
+            <FindById {...props} loggedInUserId={this.state.user} />
+          )}/>
+          <Route path="/edit/" exact render={(props) => (
+            <Home {...props} loggedInUserId={this.state.user} />
+          )}/> */}
+          {/* <Route path="/my-account" component={FindById} />        */}
+          {/* <Route path="/edit/" component={Edit} loggedInUserId={this.state.user} />  */}
 
           <Route path="/addSubscription" render={(props) => (
             <AddSubscription {...props} loggedInUserId={this.state.user}/>
           )}/>
 
-        </Switch>
+    </Switch>: <Switch>
+    <Route path="/create-an-account" render={(props) => (
+    <Signup {...props} setUserInState={this.setUserInState}/>
+  )}/>
+
+<Route path="/" exact render={(props) => (
+    <Home {...props} loggedInUserId={this.state.user} />
+  )}/>
+   
+
+ 
+
+</Switch>}
+        
       </Router>
     </React.Fragment>
     
