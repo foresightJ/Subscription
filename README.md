@@ -1,7 +1,10 @@
 
 
 ## SubScription App
-# A simple CRUD Application
+
+# Technologies Used
+**React**
+# A simple RCRUD Application
 
 In the project directory, you can run:
 
